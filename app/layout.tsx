@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Albert_Sans, Montserrat_Alternates } from "next/font/google";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const albertSans = Albert_Sans({
+  variable: "--font-albert-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserratAlternates = Montserrat_Alternates({
+  variable: "--font-montserrat-alternates",
   subsets: ["latin"],
+  display: "swap",
+  weight: "400",
 });
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,8 +31,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${albertSans.className} ${montserratAlternates.variable}`}
       >
+        <header className="bg-gray-800 text-white p-4">
+          <nav className="container mx-auto flex justify-between items-center">
+            <Link href="/" className="text-lg font-bold">PrintForge</Link>
+            <ul className="flex space-x-4">
+              <li>
+                <Link href="/" className="hover:underline">Home</Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:underline">About</Link>
+              </li>
+              <li>
+                <Link href="/models" className="hover:underline">3D models</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:underline">Contact</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+
         {children}
       </body>
     </html>
